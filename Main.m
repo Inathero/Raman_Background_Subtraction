@@ -38,8 +38,8 @@ CancerAverageScaled = General_ScaleSpectrum(CancerAverageSubs, NonCancerAverageS
 
 % Non-Cancer vs Cancer, Average, Background Subtraction
 figure; hold;
-plot(NonCXRange, NonCancerAverageSubs);
-plot(CXRange, CancerAverageScaled);
+plot( NonCancerAverageSubs);
+plot( CancerAverageScaled);
 title('Scan 000 vs Scan 005 Scaled');
 xlabel('Frequency (cm-1)')
 ylabel('Raman Intensity (a.u.)')
