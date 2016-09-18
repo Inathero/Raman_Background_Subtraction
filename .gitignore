@@ -14,6 +14,16 @@
 *.la
 *.lo
 
+# Folders
+Exports/
+
+# Matlabs
+*.m~
+
+# General
+*.png
+*.spc
+
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
