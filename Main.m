@@ -2,9 +2,9 @@ close all;
 set(0, 'DefaultTextInterpreter', 'none')
 path(path, 'Functions')
 
-[NonCancerAverage, NonCancerAverageSubs, NonCXRange] = Raman_ProcessAverageSpectrum('./Scans/Scan_000_Spec.Data 1_F.spc', 85, 'lerp');
+[NonCancerAverage, NonCancerAverageSubs, NonCXRange] = Raman_ProcessAverageSpectrum('./Scans/Scan_000_Spec.Data 1_F.spc', 85, 'polyfit');
 
-[CancerAverage, CancerAverageSubs, CXRange]          = Raman_ProcessAverageSpectrum('./Scans/Scan_005_Spec.Data 1_F.spc', 85, 'peaks');
+[CancerAverage, CancerAverageSubs, CXRange]          = Raman_ProcessAverageSpectrum('./Scans/Scan_005_Spec.Data 1_F.spc', 85, 'spline');
 
 % Non-Cancer, Average, No Background Subtraction
 figure;

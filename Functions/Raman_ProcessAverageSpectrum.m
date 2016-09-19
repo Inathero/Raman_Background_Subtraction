@@ -22,26 +22,38 @@ else
     if strcmp(iMethod, 'lerp')
         ySpline = interp1q(loc,AverageSpectrum(loc),splineRange');
         figure; hold;
-        plot(AverageSpectrum);
-        plot(ySpline);
-        scatter(loc, AverageSpectrum(loc));
+        plot(XRange,AverageSpectrum);
+        plot(XRange,ySpline);
+        loc = loc(1:end-1);
+        scatter(XRange(loc), AverageSpectrum(loc));
+    title('lerp preview');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
         hold;
         figure;
-        plot(AverageSpectrum - ySpline);
+        plot(XRange,AverageSpectrum - ySpline);
         AverageSpectrumSubs = AverageSpectrum - ySpline;
     title('lerp');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
     elseif strcmp(iMethod, 'spline')
         ySpline = spline(loc,AverageSpectrum(loc),splineRange)';
         figure; 
         hold;
-        plot(AverageSpectrum);
-        plot(ySpline);
-        scatter(loc, AverageSpectrum(loc));
+        plot(XRange,AverageSpectrum);
+        plot(XRange,ySpline);
+        loc = loc(1:end-1);
+        scatter(XRange(loc), AverageSpectrum(loc));
+        title('spline preview');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
         hold;
         figure;
-        plot(AverageSpectrum - ySpline);
+        plot(XRange,AverageSpectrum - ySpline);
         AverageSpectrumSubs = AverageSpectrum - ySpline;
     title('spline');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
     elseif strcmp(iMethod, 'polyfit')    
         ySpline = [];
         for i = 1:2:length(loc)
@@ -50,18 +62,24 @@ else
             ySpline = [ySpline  polyval(ySplinea,loc(i):loc(end))];
             else
             ySplinea = polyfit(loc(i:i+2),AverageSpectrum(loc(i:i+2)),2);
-            ySpline = [ySpline  polyval(ySplinea,loc(i):loc(i+2))];
+            ySpline = [ySpline  polyval(ySplinea,loc(i)+1:loc(i+2))];
             end
         end
         figure; hold;
-        plot(AverageSpectrum);
-        plot(ySpline);
-    scatter(loc, AverageSpectrum(loc));
+        plot(XRange,AverageSpectrum);
+        plot(XRange,ySpline);
+        loc = loc(1:end-1);
+        scatter(XRange(loc), AverageSpectrum(loc));
+        title('Polyfit preview');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
     hold;
     figure;
-    plot(AverageSpectrum - ySpline(1:length(AverageSpectrum))');
+    plot(XRange,AverageSpectrum - ySpline(1:length(AverageSpectrum))');
     AverageSpectrumSubs = AverageSpectrum - ySpline(1:length(AverageSpectrum))';
     title('PolyFit');
+xlabel('Frequency (cm-1)')
+ylabel('Raman Intensity (a.u.)')
     end
 end
 end
